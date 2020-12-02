@@ -5,12 +5,14 @@ import {
     TextInput,
     ImageBackground,
     TouchableOpacity,
+    Alert,
 } from 'react-native';
 import {Card} from 'react-native-paper';
 import IconFoundation from 'react-native-vector-icons/Foundation';
 import IconFontAwesom from 'react-native-vector-icons/FontAwesome';
 import styles from '../css/SignInCss';
 import {signIn} from '../services/AuthService';
+import {storeData} from '../data/TokenStorage';
 
 const image = { uri: "https://tipskomputer.net/wp-content/uploads/2017/10/cara-belajar-komputer.png"};
 
@@ -41,16 +43,31 @@ const SignIn = props => {
         const resultCaptcha = number1 + number2;
         signIn(data).then(response => {
             if (response.message==="Username atau Password Salah,Ulangi!"){
-                alert(response.message);
+                Alert.alert("",response.message)
             }else if (resultCaptcha!=captcha){
-                alert("Wrong Answer Captcha");
-                handleCaptcha();
+                Alert.alert(
+                    "",
+                    "Captcha Salah!",
+                    [
+                        {
+                            Text: "OK",
+                            onPress: () => handleCaptcha(),
+                        }
+                    ], { cancelable: false });
             }else if (response.message==="Login Sukses!" && resultCaptcha==captcha){
-                alert(response.message);
+               storeData(response.token);
+               Alert.alert(
+                   "",
+                   response.message,
+                   [
+                       {
+                           Text: "OK",
+                           onPress: () => props.navigation.navigate("MenuHome"),
+                       }
+                   ], { cancelable: false });
             }
         });
     }
-
     return(
         <View style={styles.container}>
             <ImageBackground source={image} style={styles.backgroundImage}>
