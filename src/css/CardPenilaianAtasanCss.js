@@ -2,10 +2,8 @@ import { StyleSheet} from 'react-native';
 
 const styles =StyleSheet.create({
     btnCard:{
-      width: 390,
+      width: 380,
       height: 113,
-      borderBottomWidth: 2,
-      borderColor: '#a6a6a6'
     },
     image:{
         width: 60,

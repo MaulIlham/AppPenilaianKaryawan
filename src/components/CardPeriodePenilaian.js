@@ -6,9 +6,11 @@ import DropDownPicker from 'react-native-dropdown-picker';
 const CardPeriodePenilaian = props => {
     const [semester, setSemester] = React.useState('');
     const [tahun, setTahun] = React.useState('');
+    const { smt, thn} = props
+
 
     return(
-        <View>
+        <View style={{zIndex: 1}}>
             <Card style={{height: 210, width: 380,marginLeft: 7, marginRight: 10, marginBottom: 10}}>
                 <Card.Content>
                     <Text style={{fontSize: 20, marginBottom: 5}}>Periode Penilaian</Text>
@@ -21,7 +23,7 @@ const CardPeriodePenilaian = props => {
                                 {label: '3', value: '3'},
                                 {label: '4', value: '4'}
                             ]}
-                            devaultValue={'2'}
+                            devaultValue={smt}
                             containerStyle={{height: 50}}
                             style={{
                                 background: '#fafafa',
@@ -34,23 +36,25 @@ const CardPeriodePenilaian = props => {
                             onChangeItem={item => setSemester(item)}
                         />
                         <Text style={{fontSize: 10, marginBottom: 5, marginLeft: 2}}>Tahun</Text>
-                        <DropDownPicker
-                            items={[
-                                {label: '2019', value: '2019'},
-                                {label: '2020', value: '2020'}
-                            ]}
-                            devaultValue={'2020'}
-                            containerStyle={{height: 50}}
-                            style={{
-                                background: '#fafafa',
-                                marginBottom: 10
-                            }}
-                            itemStyle={{
-                                justifyContent: 'flex-start'
-                            }}
-                            dropDownStyle={{background: '#fafafa'}}
-                            onChangeItem={item => setTahun(item)}
-                        />
+                            <DropDownPicker
+                                items={[
+                                    {label: '2019', value: '2019'},
+                                    {label: '2020', value: '2020'},
+                                    {label: '2020', value: '2020'},
+                                    {label: '2020', value: '2020'}
+                                ]}
+                                devaultValue={thn}
+                                containerStyle={{height: 50}}
+                                style={{
+                                    background: '#fafafa',
+                                    marginBottom: 10,
+                                }}
+                                itemStyle={{
+                                    justifyContent: 'flex-start',
+                                }}
+                                dropDownStyle={{background: '#fafafa'}}
+                                onChangeItem={item => setTahun(item)}
+                            />
                     </View>
                 </Card.Content>
             </Card>

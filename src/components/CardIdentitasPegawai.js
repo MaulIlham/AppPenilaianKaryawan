@@ -4,6 +4,8 @@ import {Card, Text} from 'react-native-paper';
 import styles from '../css/CardIdentitasPegawaiCss';
 
 const CardIdentitasPegawai = props => {
+    const {id, name, jabatan, semester, tahun, atasan, level} = props
+
     return(
         <View style={styles.container}>
             <Card style={styles.card}>
@@ -14,26 +16,26 @@ const CardIdentitasPegawai = props => {
                         <View style={styles.viewRow}>
                             <View style={styles.viewColumn}>
                                 <Text style={styles.txtTitle}>Name</Text>
-                                <Text style={styles.txtData}>Fauzie</Text>
+                                <Text style={styles.txtData}>{name}</Text>
                             </View>
                             <View style={styles.viewColumn}>
                                 <Text style={styles.txtTitle}>NIK</Text>
-                                <Text style={styles.txtData}>100010022</Text>
+                                <Text style={styles.txtData}>{id}</Text>
                             </View>
                         </View>
                         <View style={styles.viewRow}>
                             <View style={styles.viewColumn}>
                                 <Text style={styles.txtTitle}>Jabatan</Text>
-                                <Text style={styles.txtData}>Manajer</Text>
+                                <Text style={styles.txtData}>{jabatan}</Text>
                             </View>
                             <View style={styles.viewColumn}>
                                 <Text style={styles.txtTitle}>Level</Text>
-                                <Text style={styles.txtData}>D2</Text>
+                                <Text style={styles.txtData}>{level}</Text>
                             </View>
                         </View>
                         <View style={styles.viewColumn}>
                             <Text style={styles.txtTitle}>Atasan</Text>
-                            <Text style={styles.txtData}>Erlisa</Text>
+                            <Text style={styles.txtData}>{atasan}</Text>
                         </View>
                     </View>
                 </Card.Content>

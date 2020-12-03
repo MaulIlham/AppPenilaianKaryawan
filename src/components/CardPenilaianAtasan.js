@@ -7,10 +7,10 @@ const CardPenilaianAtasan = props => {
     const {id, name, posisi}=props
 
     return(
-        <View>
+        <View style={{marginTop: 3}}>
             <TouchableOpacity
                 style={styles.btnCard}
-                onPress={()=>props.handleDataPenilaian()}
+                onPress={()=>props.handleDataPenilaian(id,name,posisi,2,2020,"Erlisa","D2")}
             >
                 <Card>
                     <Card.Content>

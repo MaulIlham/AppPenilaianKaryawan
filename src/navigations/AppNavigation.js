@@ -5,7 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import IconMaterialComunity from 'react-native-vector-icons/MaterialCommunityIcons';
-import IconFeather from 'react-native-vector-icons/Feather'
+import IconEntypo from 'react-native-vector-icons/Entypo'
 
 import SignIn from '../screens/SignIn';
 import Home from '../screens/Home';
@@ -23,7 +23,15 @@ const AppNavigation = () => {
             <Stack.Navigator initialRouteName="SignIn">
                 <Stack.Screen
                     name="MenuHome"
-                    component={PenilaianAtasan}
+                    component={BottomNavigation}
+                    options={{
+                        title: 'Home',
+                        headerStyle: {
+                            backgroundColor: '#0077e6',
+                        },
+                        headerTintColor: '#fff',
+                        headerShown: false
+                    }}
                 />
                 <Stack.Screen
                     name="SignIn"
@@ -31,10 +39,6 @@ const AppNavigation = () => {
                     options={{
                         headerShown: false
                     }}
-                />
-                <Stack.Screen
-                    name="DataPerilakuBawahan"
-                    component={DataPenilaianPerilakuBawahan}
                 />
             </Stack.Navigator>
         </NavigationContainer>
@@ -44,12 +48,12 @@ const AppNavigation = () => {
 const BottomNavigation = () => {
     return(
         <Tab.Navigator
-            initialRouteName="Home"
+            initialRouteName="HomeNavigator"
             tabBarOptions={{
                 inactiveBackgroundColor: 'white',
-                activeBackgroundColor: '#9999cc',
-                activeTintColor: '#330066',
-                inactiveTintColor: '#9999cc',
+                activeBackgroundColor: '#449ef2',
+                activeTintColor: '#000000',
+                inactiveTintColor: '#000000',
                 keyboardHidesTabBar: true,
                 tabStyle: {
                     marginVertical: 5,
@@ -58,52 +62,143 @@ const BottomNavigation = () => {
                 }
             }}>
             <Tab.Screen
-                name="Home"
-                component={Home}
+                name="HomeNavigator"
+                component={HomeNavigator}
                 options={{
                     tabBarLabel: '',
                     tabBarColor: 'white',
                     tabBarIcon: ({ color }) =>(
+                        <View style={{marginTop: 10}}>
                             <IconAntDesign name="home" color={color} size={25}/>
+                        </View>
                     ),
                 }}
             />
             <Tab.Screen
-                name="List1"
-                component={List1}
+                name="ListNavigator"
+                component={ListNavigator}
                 options={{
                     tabBarLabel: '',
                     tabBarColor: 'white',
                     tabBarIcon: ({ color }) =>(
-                            <IconMaterialComunity name="clipboart-text-outline" color={color} size={25}/>
-
+                        <View style={{marginTop: 10}}>
+                            <IconMaterialComunity name="clipboard-text-outline" color={color} size={30}/>
+                        </View>
                     ),
                 }}
             />
             <Tab.Screen
-                name="PenilaianAtasan"
-                component={PenilaianAtasan}
+                name="PenilaianNavigator"
+                component={PenilaianNavigator}
                 options={{
                     tabBarLabel: '',
                     tabBarColor: 'white',
                     tabBarIcon: ({ color }) =>(
-                            <IconMaterialComunity name="clipboart-check-outline" color={color} size={25}/>
+                        <View style={{marginTop: 10}}>
+                            <IconMaterialComunity name="clipboard-text-outline" color={color} size={30}/>
+                        </View>
                     ),
                 }}
             />
             <Tab.Screen
-                name="Profile"
-                component={Profile}
+                name="ProfileNavigator"
+                component={ProfileNavigator}
                 options={{
                     tabBarLabel: '',
                     tabBarColor: 'white',
                     tabBarIcon: ({ color }) =>(
-                            <IconFeather name="users" color={color} size={25}/>
+                        <View style={{marginTop: 10}}>
+                            <IconEntypo name="users" color={color} size={25}/>
+                        </View>
                     ),
                 }}
             />
         </Tab.Navigator>
     )
 }
+
+const HomeNavigator = () =>{
+    return (
+        <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen
+                name="Home"
+                component={Home}
+                options={{
+                    title: 'Home',
+                    headerStyle: {
+                        backgroundColor: '#0077e6',
+                    },
+                    headerTintColor: '#fff',
+                }}
+            />
+        </Stack.Navigator>
+    );
+}
+
+const ListNavigator = () =>{
+    return (
+        <Stack.Navigator initialRouteName="List">
+            <Stack.Screen
+                name="List"
+                component={List1}
+                options={{
+                    title: 'List',
+                    headerStyle: {
+                        backgroundColor: '#0077e6',
+                    },
+                    headerTintColor: '#fff',
+                }}
+            />
+        </Stack.Navigator>
+    );
+}
+
+const PenilaianNavigator = () =>{
+    return (
+            <Stack.Navigator initialRouteName="PenilaianAtasan">
+                <Stack.Screen
+                    name="PenilaianAtasan"
+                    component={PenilaianAtasan}
+                    options={{
+                        title: 'Penilaian Atasan',
+                        headerStyle: {
+                            backgroundColor: '#0077e6',
+                        },
+                        headerTintColor: '#fff',
+                    }}
+                />
+                <Stack.Screen
+                    name="DataPerilakuBawahan"
+                    component={DataPenilaianPerilakuBawahan}
+                    options={{
+                        title: 'Data Penilaian Perilaku Bawahan',
+                        headerStyle: {
+                            backgroundColor: '#0077e6',
+                        },
+                        headerTintColor: '#fff',
+                    }}
+                />
+            </Stack.Navigator>
+    );
+}
+
+const ProfileNavigator = () =>{
+    return (
+        <Stack.Navigator initialRouteName="Profile">
+            <Stack.Screen
+                name="Profile"
+                component={Profile}
+                options={{
+                    title: 'Profile',
+                    headerStyle: {
+                        backgroundColor: '#0077e6',
+                    },
+                    headerTintColor: '#fff',
+                }}
+            />
+        </Stack.Navigator>
+    );
+}
+
 
 export default AppNavigation;

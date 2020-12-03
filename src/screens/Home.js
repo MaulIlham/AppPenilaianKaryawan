@@ -1,16 +1,15 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import {getAllPenilaianAtasan} from '../services/PenilaianAtasanService';
+import styles from '../css/CardPenilaianAtasanCss';
 
 const Home = props => {
-    // React.useEffect(()=>{
-    //     getAllPenilaianAtasan(2,2020).then(response => {
-    //         alert(response.message)
-    //     })
-    // })
+
     return(
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
-            <Text style={{fontSize: 40}}>Welcome To Home</Text>
+        <View style={{justifyContent: 'center', alignItems: 'center',marginTop: 200}}>
+            <Image style={{height: 200,width: 200,borderRadius: 200/2}} source={{uri: 'https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png'}}/>
+
+            <Text style={{fontSize: 40}}></Text>
         </View>
     );
 }
