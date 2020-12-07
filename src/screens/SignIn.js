@@ -62,9 +62,7 @@ const SignIn = props => {
                    [
                        {
                            Text: "OK",
-                           onPress: () => props.navigation.navigate("MenuHome",{
-                               name: data.username
-                           }),
+                           onPress: () => props.navigation.navigate("MenuHome")
                        }
                    ], { cancelable: false });
             }
@@ -119,7 +117,6 @@ const SignIn = props => {
                                 onChangeText={(text)=>setCaptcha(text)}
                             />
                         </View>
-
                         <TouchableOpacity
                             style={styles.btnLogin}
                             onPress={()=>handleSignIn()}

@@ -108,12 +108,13 @@ const DataPenilaianPerilakuBawahan = props => {
                     small
                     label={"Penilaian"}
                     style={styles.btnPenilaian}
-                    onPress={()=>alert("di klik")}
+                    onPress={ () => props.navigation.navigate("FormPenilaian2")}
                 />
                 <FAB
                     small
                     label={"Feedback"}
                     style={styles.btnFeedback}
+                    onPress={ () => props.navigation.navigate("Feedback")}
                 />
             </View>
         </View>
@@ -140,7 +141,8 @@ const styles = StyleSheet.create({
         margin: 16,
         bottom: 0,
         right: 0,
-        width: 175
+        width: 175,
+        backgroundColor: '#2fc91e'
     }
 })
 

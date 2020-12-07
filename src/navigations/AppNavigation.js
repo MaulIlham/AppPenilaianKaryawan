@@ -7,12 +7,15 @@ import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import IconMaterialComunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconEntypo from 'react-native-vector-icons/Entypo'
 
+// screens
 import SignIn from '../screens/SignIn';
 import Home from '../screens/Home';
 import List1 from '../screens/List1';
 import PenilaianAtasan from '../screens/PenilaianAtasan';
 import Profile from '../screens/Profile';
 import DataPenilaianPerilakuBawahan from '../screens/DataPenilaianPerilakuBawahan';
+import FormPenilaian from '../screens/FormPenilaian';
+import Feedback from '../screens/Feedback';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -149,6 +152,17 @@ const ListNavigator = () =>{
                     headerTintColor: '#fff',
                 }}
             />
+            <Stack.Screen
+                name="FormPenilaian1"
+                component={FormPenilaian}
+                options={{
+                    title: 'Input Penilaian',
+                    headerStyle: {
+                        backgroundColor: '#0077e6',
+                    },
+                    headerTintColor: '#fff',
+                }}
+            />
         </Stack.Navigator>
     );
 }
@@ -172,6 +186,29 @@ const PenilaianNavigator = () =>{
                     component={DataPenilaianPerilakuBawahan}
                     options={{
                         title: 'Data Penilaian Perilaku Bawahan',
+                        headerStyle: {
+                            backgroundColor: '#0077e6',
+                        },
+                        headerTintColor: '#fff',
+                    }}
+                />
+                <Stack.Screen
+                    name="FormPenilaian2"
+                    component={FormPenilaian}
+                    options={{
+                        title: 'Input Penilaian',
+                        headerStyle: {
+                            backgroundColor: '#0077e6',
+                        },
+                        headerTintColor: '#fff',
+                        headerLeft: null,
+                    }}
+                />
+                <Stack.Screen
+                    name="Feedback"
+                    component={Feedback}
+                    options={{
+                        title: 'Umpan Balik & Pengembangan',
                         headerStyle: {
                             backgroundColor: '#0077e6',
                         },
