@@ -6,7 +6,6 @@ import {getAllPenilaianAtasan} from '../services/PenilaianAtasanService';
 import CardPenilaianAtasan from '../components/CardPenilaianAtasan';
 import IconFontAwesom5 from 'react-native-vector-icons/FontAwesome5'
 
-
 const PenilaianAtasan = props => {
 
     // React.useEffect(()=>{
@@ -52,12 +51,14 @@ const PenilaianAtasan = props => {
             row = (
                 dummyPenilaian.map((item,index) => {
                     return(
-                        <CardPenilaianAtasan
-                            handleDataPenilaian={handleDataPenilaian}
-                            id={item.id}
-                            name={item.nama}
-                            posisi={item.posisi}
-                        />
+                        <View key={index}>
+                            <CardPenilaianAtasan
+                                handleDataPenilaian={handleDataPenilaian}
+                                id={item.id}
+                                name={item.nama}
+                                posisi={item.posisi}
+                            />
+                        </View>
                     )
                 })
             );

@@ -303,19 +303,21 @@ const FormPenilaian = props =>{
             </View>
 
             <View>
-                <ScrollView style={{height: 600}}>
+                <ScrollView style={{height: 645}}>
                     {
                         dataPenilaian.map((item,index) =>{
                             return(
-                                <View style={{marginTop: 10}}>
-                                    <Text style={{fontSize: 12, color: '#ff0303', marginLeft: 3, marginBottom: 5}} key={index}>{item.label}</Text>
+                                <View style={{marginTop: 10}} key={index}>
+                                    <Text style={{fontSize: 14, color: '#ff0303', marginLeft: 3, marginBottom: 5}} key={index}>{item.label}</Text>
                                     <View style={{borderTopWidth: 1, marginLeft: 3, marginRight: 2,borderColor: '#bab9b6', borderRightWidth: 1, borderLeftWidth: 1}}>
                                     {
                                         item.value.map((item,index) => {
                                             return(
-                                                <CardFormPenilaian
-                                                    value={item.title}
-                                                />
+                                                <View key={index}>
+                                                    <CardFormPenilaian
+                                                        value={item.title}
+                                                    />
+                                                </View>
                                             )
                                         })
                                     }

@@ -20,6 +20,7 @@ import Feedback from '../screens/Feedback';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+
 const AppNavigation = () => {
     return (
         <NavigationContainer>
@@ -93,7 +94,7 @@ const BottomNavigation = () => {
             <Tab.Screen
                 name="PenilaianNavigator"
                 component={PenilaianNavigator}
-                options={{
+                options={({ route }) => ({
                     tabBarLabel: '',
                     tabBarColor: 'white',
                     tabBarIcon: ({ color }) =>(
@@ -101,7 +102,9 @@ const BottomNavigation = () => {
                             <IconMaterialComunity name="clipboard-text-outline" color={color} size={30}/>
                         </View>
                     ),
-                }}
+                    tabBarVisible: getTabBarVisibility(route)
+                })}
+
             />
             <Tab.Screen
                 name="ProfileNavigator"
@@ -217,6 +220,18 @@ const PenilaianNavigator = () =>{
                 />
             </Stack.Navigator>
     );
+}
+
+const getTabBarVisibility = (route) => {
+    const routeName = route.state
+        ? route.state.routes[route.state.index].name
+        : '';
+
+    if (routeName === 'Feedback' || routeName === 'FormPenilaian2') {
+        return false;
+    }
+
+    return true;
 }
 
 const ProfileNavigator = () =>{
