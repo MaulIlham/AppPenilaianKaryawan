@@ -4,6 +4,7 @@ import {Card, FAB} from 'react-native-paper';
 import {getAllPenilaianAtasan} from '../services/PenilaianAtasanService';
 import IconFontAwesom5 from 'react-native-vector-icons/FontAwesome5'
 
+import UseHandleScroll from "./UseHandleScroll";
 import CardIdentitasPegawai from '../components/CardIdentitasPegawai';
 import CardPeriodePenilaian from '../components/CardPeriodePenilaian';
 import CardNilaiKompetensi from '../components/CardNilaiKompetensi';
@@ -11,7 +12,7 @@ import CardNilaiKompetensi from '../components/CardNilaiKompetensi';
 const DataPenilaianPerilakuBawahan = props => {
     const {personnelId,semester,tahun, name, jabatan, atasan, level}=(props.route.params)
     const height=(props.height)
-
+    const { handleScroll, showButton } = UseHandleScroll();
     const dd=[]
     const dummyNilai=[
         {
@@ -77,7 +78,7 @@ const DataPenilaianPerilakuBawahan = props => {
 
     return(
         <View style={{height: height}}>
-            <ScrollView>
+            <ScrollView onScroll={handleScroll}>
                 <CardIdentitasPegawai
                     id={personnelId}
                     semester={semester}
@@ -104,18 +105,18 @@ const DataPenilaianPerilakuBawahan = props => {
                 </View>
             </ScrollView>
             <View>
-                <FAB
+                {showButton&&<FAB
                     small
                     label={"Penilaian"}
                     style={styles.btnPenilaian}
-                    onPress={ () => props.navigation.navigate("FormPenilaian2")}
-                />
-                <FAB
+                    onPress={() => props.navigation.navigate("FormPenilaian2")}
+                />}
+                {showButton&&<FAB
                     small
                     label={"Feedback"}
                     style={styles.btnFeedback}
-                    onPress={ () => props.navigation.navigate("Feedback")}
-                />
+                    onPress={() => props.navigation.navigate("Feedback")}
+                />}
             </View>
         </View>
     )
