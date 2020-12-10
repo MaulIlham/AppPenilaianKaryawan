@@ -1,16 +1,22 @@
 import BaseUrl from './BaseUrl';
 import Axios from 'axios';
-import {getData} from '../data/TokenStorage';
+import {getDataToken, getDataCookie, storeDataCookie} from '../data/TokenStorage';
+import CookieManager from "@react-native-community/cookies";
 
 export const getAllPenilaianAtasan = async (semester, tahun) =>{
-    const token = await getData().then(res => res)
-    const response = await Axios.get("http://156.67.218.233/perilakunew/api/penilaian_atasan/penilaian/10001022/2/2020",{
+    const token = await getDataToken().then(res => res)
+    const cookies = await getDataCookie().then(res => res)
+    await CookieManager.clearAll()
+
+    const response = await Axios.get(`${BaseUrl}penilaian_atasan/${semester}/${tahun}`,{
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
             Authorization: token,
+            'cookie': cookies,
         }
     })
-    console.log(response.data)
+
+    console.log(cookies)
     return response.data;
 }

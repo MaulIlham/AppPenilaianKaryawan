@@ -12,6 +12,8 @@ target 'AppPenilaianPerilakuKaryawan' do
 
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-async-storage/async-storage'
 
+  pod 'react-native-cookies', :path => '../node_modules/@react-native-community/cookies'
+
   target 'AppPenilaianPerilakuKaryawanTests' do
     inherit! :complete
     # Pods for testing

@@ -12,7 +12,7 @@ import IconFoundation from 'react-native-vector-icons/Foundation';
 import IconFontAwesom from 'react-native-vector-icons/FontAwesome';
 import styles from '../css/SignInCss';
 import {signIn} from '../services/AuthService';
-import {storeData} from '../data/TokenStorage';
+import {storeDataToken} from '../data/TokenStorage';
 
 const image = { uri: "https://tipskomputer.net/wp-content/uploads/2017/10/cara-belajar-komputer.png"};
 
@@ -55,7 +55,7 @@ const SignIn = props => {
                         }
                     ], { cancelable: false });
             }else if (response.message==="Login Sukses!" && resultCaptcha==captcha){
-               storeData(response.token);
+               storeDataToken(response.token);
                Alert.alert(
                    "",
                    response.message,

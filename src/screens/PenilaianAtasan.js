@@ -8,11 +8,11 @@ import IconFontAwesom5 from 'react-native-vector-icons/FontAwesome5'
 
 const PenilaianAtasan = props => {
 
-    // React.useEffect(()=>{
-    //     getAllPenilaianAtasan(2,2020).then(response=>{
-    //         // console.log(response)
-    //     })
-    // })
+    React.useEffect(()=>{
+        getAllPenilaianAtasan(2,2020).then(response=>{
+            // console.log(response)
+        })
+    })
 
     const dd=[]
     const dummyPenilaian = [
