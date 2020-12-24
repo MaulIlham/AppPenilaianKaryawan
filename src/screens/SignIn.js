@@ -55,14 +55,14 @@ const SignIn = props => {
                         }
                     ], { cancelable: false });
             }else if (response.message==="Login Sukses!" && resultCaptcha==captcha){
-               storeDataToken(response.token);
-               Alert.alert(
+                storeDataToken(response.token);
+                Alert.alert(
                    "",
                    response.message,
                    [
                        {
                            Text: "OK",
-                           onPress: () => props.navigation.navigate("Loading")
+                           onPress: () => props.navigation.navigate("LoadingHome")
                        }
                    ], { cancelable: false });
             }

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, ScrollView, TouchableOpacity, StyleSheet} from 'react-native';
 import {Card, FAB} from 'react-native-paper';
-import {getAllPenilaianAtasan} from '../services/PenilaianAtasanService';
+import {getAllPenilaianAtasan, getDataPenilaian} from '../services/PenilaianAtasanService';
 import IconFontAwesom5 from 'react-native-vector-icons/FontAwesome5'
 
 import UseHandleScroll from "./UseHandleScroll";
@@ -11,56 +11,38 @@ import CardNilaiKompetensi from '../components/CardNilaiKompetensi';
 
 const DataPenilaianPerilakuBawahan = props => {
     const {personnelId,semester,tahun, name, jabatan, atasan, level}=(props.route.params)
+    const [data, setData] = React.useState([])
     const height=(props.height)
     const { handleScroll, showButton } = UseHandleScroll();
-    const dd=[]
-    const dummyNilai=[
-        {
-            "name": "name1",
-            "nilai1": 5,
-            "nilai2": 4,
-            "nilai3": 5
-        },
-        {
-            "name": "name2",
-            "nilai1": 5,
-            "nilai2": 4,
-            "nilai3": 5
-        },
-        {
-            "name": "name3",
-            "nilai1": 5,
-            "nilai2": 4,
-            "nilai3": 5
-        },
-        {
-            "name": "name4",
-            "nilai1": 5,
-            "nilai2": 4,
-            "nilai3": 5
-        },
-        {
-            "name": "name5",
-            "nilai1": 5,
-            "nilai2": 4,
-            "nilai3": 5
-        },
-    ]
 
+    React.useEffect(() => {
+        getDataPenilaian("10001022",2,2020).then(response => {
+            setData(response.data)
+        })
+    },[])
+
+
+
+    const dd=[];
+console.log(data)
     const generateNilaiKompetensi = () => {
         let row;
-        if (dd.length!=0){
+        if (data.length!=0){
             row= (
-                dummyNilai.map((item,index) =>{
+                data.map((item,index) =>{
                     return(
                         <View key={index}>
-                            <CardNilaiKompetensi
-                                no={index+1}
-                                namaKompetensi={item.name}
-                                nKaryawan={item.nilai1}
-                                nAtasan={item.nilai2}
-                                nAkumulasi={item.nilai3}
-                            />
+                            <Card>
+                                <Card.Content>
+                                    <CardNilaiKompetensi
+                                        no={index+1}
+                                        namaKompetensi={item.nm_kompetensi}
+                                        nKaryawan={item.nilai_ybs}
+                                        nAtasan={item.nilai_atasan}
+                                        nAkumulasi={item.nilai_akumulasi}
+                                    />
+                                </Card.Content>
+                            </Card>
                         </View>
                     )
                 })

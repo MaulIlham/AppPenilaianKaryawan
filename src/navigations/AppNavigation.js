@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,Text} from 'react-native';
+import {View,Text, LogBox} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -16,16 +16,17 @@ import Profile from '../screens/Profile';
 import DataPenilaianPerilakuBawahan from '../screens/DataPenilaianPerilakuBawahan';
 import FormPenilaian from '../screens/FormPenilaian';
 import Feedback from '../screens/Feedback';
-import LoadingScreen from "../screens/LoadingScreen";
+import LoadingScreenSignin from "../screens/LoadingScreenSignin";
+import LoadingScreenHome from "../screens/LoadingScreenHome";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-
+LogBox.ignoreAllLogs();
 const AppNavigation = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Loading">
+            <Stack.Navigator initialRouteName="LoadingSignin">
                 <Stack.Screen
                     name="MenuHome"
                     component={BottomNavigation}
@@ -46,8 +47,15 @@ const AppNavigation = () => {
                     }}
                 />
                 <Stack.Screen
-                    name="Loading"
-                    component={LoadingScreen}
+                    name="LoadingSignin"
+                    component={LoadingScreenSignin}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+                <Stack.Screen
+                    name="LoadingHome"
+                    component={LoadingScreenHome}
                     options={{
                         headerShown: false
                     }}
