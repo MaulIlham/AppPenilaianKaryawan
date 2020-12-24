@@ -4,7 +4,29 @@ import {RadioButton} from 'react-native-paper';
 
 const CardFormPenilaian = props => {
     const [checked, setChecked] = React.useState('')
-    const {value} = props
+    const [flag, setFlag] = React.useState(false)
+    const {value, plusx, plusy, plusz, handleMin} = props
+
+    const handleSetCheckedX = () => {
+        handleMin(checked,flag)
+        setChecked('first')
+        setFlag(true)
+        plusx()
+    }
+
+    const handleSetCheckedY = () => {
+        handleMin(checked,flag)
+        setChecked('second')
+        setFlag(true)
+        plusy()
+    }
+
+    const handleSetCheckedZ = () => {
+        handleMin(checked,flag)
+        setChecked('third')
+        setFlag(true)
+        plusz()
+    }
 
     return(
         <View style={{flexDirection: 'row'}}>
@@ -14,22 +36,23 @@ const CardFormPenilaian = props => {
             <View style={[styles.vRadio,{width: 75}]}>
                 <RadioButton
                     value={"text1"}
-                    status={ checked === 'first' ? 'checked' : 'unchecked'}
-                    onPress={() => setChecked('first')}
+                    status={
+                        checked === 'first' ? 'checked' : 'unchecked'}
+                    onPress={() => handleSetCheckedX()}
                 />
             </View>
             <View style={[styles.vRadio,{width: 75}]}>
                 <RadioButton
                     value={"text2"}
                     status={ checked === 'second' ? 'checked' : 'unchecked'}
-                    onPress={() => setChecked('second')}
+                    onPress={() => handleSetCheckedY()}
                 />
             </View>
             <View style={[styles.vRadio,{width: 67}]}>
                 <RadioButton
                     value={"text3"}
                     status={ checked === 'third' ? 'checked' : 'unchecked'}
-                    onPress={() => setChecked('third')}
+                    onPress={() => handleSetCheckedZ()}
                 />
             </View>
         </View>

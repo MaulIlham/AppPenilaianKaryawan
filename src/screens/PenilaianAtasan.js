@@ -1,18 +1,10 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
-import {Card} from 'react-native-paper';
-import styles from '../css/CardPenilaianAtasanCss';
-import {getAllPenilaianAtasan} from '../services/PenilaianAtasanService';
 import CardPenilaianAtasan from '../components/CardPenilaianAtasan';
 import IconFontAwesom5 from 'react-native-vector-icons/FontAwesome5'
+import {getAllPenilaianAtasan} from "../services/PenilaianAtasanService";
 
 const PenilaianAtasan = props => {
-
-    React.useEffect(()=>{
-        getAllPenilaianAtasan(2,2020).then(response=>{
-            // console.log(response)
-        })
-    })
 
     const dd=[]
     const dummyPenilaian = [
@@ -32,6 +24,12 @@ const PenilaianAtasan = props => {
             "posisi": "Sales"
         },
     ]
+
+    React.useEffect(()=>{
+        getAllPenilaianAtasan(2,2020).then(response => {
+
+        })
+    },[])
 
     const handleDataPenilaian = (id,name,jabatan,semester,tahun,atasan,level) => {
         props.navigation.navigate("DataPerilakuBawahan",{

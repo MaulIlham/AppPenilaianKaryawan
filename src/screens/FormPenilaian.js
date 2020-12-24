@@ -260,6 +260,9 @@ const FormPenilaian = props =>{
             ]
         }
     ]
+    const [ dataX, setDataX ] = React.useState(0)
+    const [ dataY, setDataY ] = React.useState(0)
+    const [ dataZ, setDataZ ] = React.useState(0)
 
     React.useLayoutEffect(() => {
         props.navigation.setOptions({
@@ -267,13 +270,44 @@ const FormPenilaian = props =>{
                 <View style={{marginRight: 10, backgroundColor: '#0077e6'}}>
                     <Button
                         style={{backgroundColor: '#0077e6'}}
-                        onPress={() => alert('submit')}
+                        onPress={() => alert(dataX)}
                         title="Submit"
                     />
                 </View>
             ),
         });
     }, [props.navigation]);
+
+    React.useEffect(() => {
+        alert(dataX+" "+dataY+" "+dataZ)
+    },[dataX,dataY,dataZ])
+
+    const handlePlusX = () => {
+        setDataX(dataX+1)
+    }
+
+    const handlePlusY = () => {
+        setDataY(dataY+1)
+    }
+
+    const handlePlusZ = () => {
+        setDataZ(dataZ+1)
+    }
+
+    const handleMin = (status,flag) => {
+        if (flag){
+            if (status==='first'){
+                setDataX(dataX-1)
+                console.log("x - 1")
+            }else if (status==='second'){
+                setDataY(dataY-1)
+                console.log("y - 1")
+            }else if (status==='third'){
+                setDataZ(dataZ-1)
+                console.log("z - 1")
+            }
+        }
+    }
 
     return(
         <View>
@@ -316,6 +350,10 @@ const FormPenilaian = props =>{
                                                 <View key={index}>
                                                     <CardFormPenilaian
                                                         value={item.title}
+                                                        plusx={handlePlusX}
+                                                        plusy={handlePlusY}
+                                                        plusz={handlePlusZ}
+                                                        handleMin={handleMin}
                                                     />
                                                 </View>
                                             )

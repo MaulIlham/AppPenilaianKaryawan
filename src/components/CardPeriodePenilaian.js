@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import {Card, Text} from 'react-native-paper';
 import DropDownPicker from 'react-native-dropdown-picker';
 
+
 const CardPeriodePenilaian = props => {
     const [semester, setSemester] = React.useState('');
     const [tahun, setTahun] = React.useState('');
@@ -35,7 +36,8 @@ const CardPeriodePenilaian = props => {
                             dropDownStyle={{background: '#fafafa'}}
                             onChangeItem={item => setSemester(item)}
                         />
-                        <Text style={{fontSize: 10, marginBottom: 5, marginLeft: 2}}>Tahun</Text>
+                        <View>
+                            <Text style={{fontSize: 10, marginBottom: 5, marginLeft: 2}}>Tahun</Text>
                             <DropDownPicker
                                 items={[
                                     {label: '2019', value: '2019'},
@@ -55,6 +57,8 @@ const CardPeriodePenilaian = props => {
                                 dropDownStyle={{background: '#fafafa'}}
                                 onChangeItem={item => setTahun(item)}
                             />
+                        </View>
+
                     </View>
                 </Card.Content>
             </Card>

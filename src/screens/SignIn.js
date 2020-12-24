@@ -62,7 +62,7 @@ const SignIn = props => {
                    [
                        {
                            Text: "OK",
-                           onPress: () => props.navigation.navigate("MenuHome")
+                           onPress: () => props.navigation.navigate("Loading")
                        }
                    ], { cancelable: false });
             }

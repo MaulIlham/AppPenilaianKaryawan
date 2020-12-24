@@ -16,6 +16,7 @@ import Profile from '../screens/Profile';
 import DataPenilaianPerilakuBawahan from '../screens/DataPenilaianPerilakuBawahan';
 import FormPenilaian from '../screens/FormPenilaian';
 import Feedback from '../screens/Feedback';
+import LoadingScreen from "../screens/LoadingScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -24,7 +25,7 @@ const Tab = createBottomTabNavigator();
 const AppNavigation = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="SignIn">
+            <Stack.Navigator initialRouteName="Loading">
                 <Stack.Screen
                     name="MenuHome"
                     component={BottomNavigation}
@@ -40,6 +41,13 @@ const AppNavigation = () => {
                 <Stack.Screen
                     name="SignIn"
                     component={SignIn}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+                <Stack.Screen
+                    name="Loading"
+                    component={LoadingScreen}
                     options={{
                         headerShown: false
                     }}

@@ -88,10 +88,12 @@ const DataPenilaianPerilakuBawahan = props => {
                     atasan={atasan}
                     level={level}
                 />
-                <CardPeriodePenilaian
-                    smt={semester}
-                    thn={tahun}
-                />
+                <View>
+                    <CardPeriodePenilaian
+                        smt={semester}
+                        thn={tahun}
+                    />
+                </View>
                 <View style={styles.view}>
                     <Card>
                         <Card.Content>
