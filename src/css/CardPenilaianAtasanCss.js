@@ -25,7 +25,7 @@ const styles =StyleSheet.create({
         fontSize: 9,
     },
     txtData:{
-        fontSize: 17,
+        fontSize: 14,
     }
 })
 

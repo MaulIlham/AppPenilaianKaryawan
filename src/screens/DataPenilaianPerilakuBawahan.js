@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, ScrollView, TouchableOpacity, StyleSheet} from 'react-native';
 import {Card, FAB} from 'react-native-paper';
-import {getAllPenilaianAtasan, getDataPenilaian} from '../services/PenilaianAtasanService';
+import {getAllPenilaianAtasan, getDataEvaluationEmployees, getDataPenilaian} from '../services/PenilaianAtasanService';
 import IconFontAwesom5 from 'react-native-vector-icons/FontAwesome5'
 
 import UseHandleScroll from "./UseHandleScroll";
@@ -10,20 +10,19 @@ import CardPeriodePenilaian from '../components/CardPeriodePenilaian';
 import CardNilaiKompetensi from '../components/CardNilaiKompetensi';
 
 const DataPenilaianPerilakuBawahan = props => {
-    const {personnelId,semester,tahun, name, jabatan, atasan, level}=(props.route.params)
+    const {personnelId,semester,tahun, name, jabatan, level}=(props.route.params)
     const [data, setData] = React.useState([])
+    const [atasan, setAtasan] = React.useState('');
     const height=(props.height)
     const { handleScroll, showButton } = UseHandleScroll();
 
     React.useEffect(() => {
-        getDataPenilaian("10001022",2,2020).then(response => {
+        getDataEvaluationEmployees(personnelId,semester,tahun).then(response => {
             setData(response.data)
+            setAtasan(response.data[0].nm_atasan)
         })
     },[])
 
-
-
-    const dd=[];
 console.log(data)
     const generateNilaiKompetensi = () => {
         let row;
@@ -74,6 +73,7 @@ console.log(data)
                     <CardPeriodePenilaian
                         smt={semester}
                         thn={tahun}
+                        index={data.length-1}
                     />
                 </View>
                 <View style={styles.view}>

@@ -2,41 +2,22 @@ import React from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import CardPenilaianAtasan from '../components/CardPenilaianAtasan';
 import IconFontAwesom5 from 'react-native-vector-icons/FontAwesome5'
-import {getAllPenilaianAtasan} from "../services/PenilaianAtasanService";
+import {getAllListPersonelEvaluation, getAllPenilaianAtasan} from "../services/PenilaianAtasanService";
 
 const PenilaianAtasan = props => {
-
-    const dd=[]
-    const dummyPenilaian = [
-        {
-            "id":"10001022",
-            "nama": "Fauzi",
-            "posisi": "manager"
-        },
-        {
-            "id":"10001023",
-            "nama": "Aldi",
-            "posisi": "Accounting"
-        },
-        {
-            "id":"10001024",
-            "nama": "Doni",
-            "posisi": "Sales"
-        },
-    ]
+    const [data, setData] = React.useState([])
 
     React.useEffect(()=>{
-        getAllPenilaianAtasan(2,2020).then(response => {
-
+        getAllListPersonelEvaluation(2,2020).then(response => {
+            setData(response.data)
         })
     },[])
 
-    const handleDataPenilaian = (id,name,jabatan,semester,tahun,atasan,level) => {
+    const handleDataPenilaian = (id,name,jabatan,semester,tahun,level) => {
         props.navigation.navigate("DataPerilakuBawahan",{
             personnelId: id,
             name: name,
             jabatan: jabatan,
-            atasan: atasan,
             semester: semester,
             tahun: tahun,
             level:level
@@ -45,16 +26,19 @@ const PenilaianAtasan = props => {
 
     const generateListPenilaianAtasan = () => {
         let row;
-        if (dummyPenilaian.length!=0){
+        if (data.length!=0){
             row = (
-                dummyPenilaian.map((item,index) => {
+                data.map((item,index) => {
                     return(
                         <View key={index}>
                             <CardPenilaianAtasan
                                 handleDataPenilaian={handleDataPenilaian}
-                                id={item.id}
-                                name={item.nama}
-                                posisi={item.posisi}
+                                id={item.personnel_id}
+                                name={item.name_full}
+                                posisi={item.name_position}
+                                semester={item.semester}
+                                tahun={item.tahun}
+                                jabatan={item.tingkat_jabatan}
                             />
                         </View>
                     )

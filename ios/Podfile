@@ -14,6 +14,8 @@ target 'AppPenilaianPerilakuKaryawan' do
 
   pod 'react-native-cookies', :path => '../node_modules/@react-native-community/cookies'
 
+  pod 'RNCPicker', :path => '../node_modules/@react-native-picker/picker'
+
   target 'AppPenilaianPerilakuKaryawanTests' do
     inherit! :complete
     # Pods for testing

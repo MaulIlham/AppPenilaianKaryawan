@@ -1,8 +1,8 @@
 import BaseUrl from './BaseUrl';
 import Axios from 'axios';
-import {getDataToken, getDataCookie, storeDataCookie} from '../data/TokenStorage';
+import {getDataToken} from '../data/TokenStorage';
 
-export const getAllPenilaianAtasan = async (semester, tahun) =>{
+export const getAllListPersonelEvaluation = async (semester, tahun) =>{
     const token = await getDataToken().then(res => res)
 
     const response = await Axios.get(`${BaseUrl}penilaian_atasan/${semester}/${tahun}`,{
@@ -14,7 +14,7 @@ export const getAllPenilaianAtasan = async (semester, tahun) =>{
     return response.data;
 }
 //penilaian bawahan
-export const getDataPenilaian = async (id , semester, tahun) => {
+export const getDataEvaluationEmployees = async (id , semester, tahun) => {
     const token = await getDataToken().then(res => res)
 
     const response = await Axios.get(`${BaseUrl}penilaian_atasan/penilaian/${id}/${semester}/${tahun}`,{

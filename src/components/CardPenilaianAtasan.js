@@ -4,13 +4,13 @@ import {Card} from 'react-native-paper';
 import styles from '../css/CardPenilaianAtasanCss';
 
 const CardPenilaianAtasan = props => {
-    const {id, name, posisi}=props
+    const {id, name, posisi, semester, tahun, jabatan}=props
 
     return(
-        <View style={{marginTop: 3}}>
+        <View style={{marginTop: 10}}>
             <TouchableOpacity
                 style={styles.btnCard}
-                onPress={()=>props.handleDataPenilaian(id,name,posisi,2,2020,"Erlisa","D2")}
+                onPress={()=>props.handleDataPenilaian(id,name,posisi,semester,tahun,jabatan)}
             >
                 <Card>
                     <Card.Content>
@@ -20,9 +20,9 @@ const CardPenilaianAtasan = props => {
                                 <View style={styles.viewCardTextRow}>
                                     <View style={styles.viewCardTextColumn}>
                                         <Text style={styles.txtTitle}>Nama Pegawai</Text>
-                                        <Text style={styles.txtData}>{name}</Text>
+                                        <Text style={[styles.txtData,{width: 150, height: 30}]}>{name}</Text>
                                     </View>
-                                    <View style={[styles.viewCardTextColumn,{marginLeft: 10}]}>
+                                    <View style={[styles.viewCardTextColumn,{marginLeft: 60}]}>
                                         <Text style={styles.txtTitle}>Id Pegawai</Text>
                                         <Text style={styles.txtData}>{id}</Text>
                                     </View>

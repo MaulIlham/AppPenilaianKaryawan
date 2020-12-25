@@ -13,22 +13,22 @@ const CardIdentitasPegawai = props => {
                     <Text style={{fontSize: 20, marginBottom: 5}}>Identitas Pegawai</Text>
                     <View style={{borderBottomWidth:1, borderBottomColor: '#e8e9eb', marginBottom: 10}}></View>
                     <View style={styles.viewColumn}>
-                        <View style={styles.viewRow}>
+                        <View style={[styles.viewRow,{marginBottom: 7}]}>
                             <View style={styles.viewColumn}>
                                 <Text style={styles.txtTitle}>Name</Text>
-                                <Text style={styles.txtData}>{name}</Text>
+                                <Text style={[styles.txtData,{width: 190}]}>{name}</Text>
                             </View>
-                            <View style={styles.viewColumn}>
+                            <View style={[styles.viewColumn,{marginLeft: 50}]}>
                                 <Text style={styles.txtTitle}>NIK</Text>
                                 <Text style={styles.txtData}>{id}</Text>
                             </View>
                         </View>
-                        <View style={styles.viewRow}>
+                        <View style={[styles.viewRow,{marginBottom: 7}]}>
                             <View style={styles.viewColumn}>
                                 <Text style={styles.txtTitle}>Jabatan</Text>
-                                <Text style={styles.txtData}>{jabatan}</Text>
+                                <Text style={[styles.txtData,{width: 190}]}>{jabatan}</Text>
                             </View>
-                            <View style={styles.viewColumn}>
+                            <View style={[styles.viewColumn,{marginLeft: 50}]}>
                                 <Text style={styles.txtTitle}>Level</Text>
                                 <Text style={styles.txtData}>{level}</Text>
                             </View>

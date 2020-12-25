@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     card:{
-      height: 180,
+      height: 200,
       width: 380,
       marginLeft: 7,
       marginRight: 10
