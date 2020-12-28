@@ -1,12 +1,11 @@
 import React from 'react'
 import {View, Text, StyleSheet, ScrollView, Button, Dimensions} from 'react-native';
 import CardFormPenilaian from '../components/CardFormPenilaian';
-import dataPenilaian from "../data/Data";
+import {getPointEvaluationYBS} from "../services/PenilaianYBSService";
 
 const FormPenilaian = props =>{
-    const [ dataX, setDataX ] = React.useState(0)
-    const [ dataY, setDataY ] = React.useState(0)
-    const [ dataZ, setDataZ ] = React.useState(0)
+    const [dataPenilaian, setDataPenilaian] = React.useState([])
+    const {semester, tahun} = (props.route.params)
 
     React.useLayoutEffect(() => {
         props.navigation.setOptions({
@@ -23,33 +22,35 @@ const FormPenilaian = props =>{
     }, [props.navigation]);
 
     React.useEffect(() => {
-    },[dataX,dataY,dataZ])
+        getPointEvaluationYBS(semester,tahun).then(response => {
+            setDataPenilaian(response.data)
+        })
+    },[])
 
-    const handlePlusX = () => {
-        setDataX(dataX+1)
-    }
-
-    const handlePlusY = () => {
-        setDataY(dataY+1)
-    }
-
-    const handlePlusZ = () => {
-        setDataZ(dataZ+1)
-    }
-
-    const handleMin = (status,flag) => {
-        if (flag){
-            if (status==='first'){
-                setDataX(dataX-1)
-                console.log("x - 1")
-            }else if (status==='second'){
-                setDataY(dataY-1)
-                console.log("y - 1")
-            }else if (status==='third'){
-                setDataZ(dataZ-1)
-                console.log("z - 1")
-            }
-        }
+    const handleDataPenilaian = () => {
+            dataPenilaian.map((item,index) =>{
+                if (item.detail.length!=0){
+                    return(
+                        <View style={{marginTop: 10}} key={index}>
+                            <Text style={{fontSize: 14, color: '#ff0303', marginLeft: 3, marginBottom: 5}} key={index}>{item.nm_kompetensi}</Text>
+                            <View style={{borderTopWidth: 1, marginLeft: 3, marginRight: 2,borderColor: '#bab9b6', borderRightWidth: 1, borderLeftWidth: 1}}>
+                                {
+                                    item.detail.map((item,index) => {
+                                        return(
+                                            <View key={index}>
+                                                <CardFormPenilaian
+                                                    perilaku={item.nm_perilaku_kunci}
+                                                    id={item.id}
+                                                />
+                                            </View>
+                                        )
+                                    })
+                                }
+                            </View>
+                        </View>
+                    )
+                }
+            })
     }
 
     const height = Dimensions.get('window').height
@@ -84,32 +85,7 @@ const FormPenilaian = props =>{
 
             <View>
                 <ScrollView style={{height: 645}}>
-                    {
-                        dataPenilaian.map((item,index) =>{
-                            return(
-                                <View style={{marginTop: 10}} key={index}>
-                                    <Text style={{fontSize: 14, color: '#ff0303', marginLeft: 3, marginBottom: 5}} key={index}>{item.label}</Text>
-                                    <View style={{borderTopWidth: 1, marginLeft: 3, marginRight: 2,borderColor: '#bab9b6', borderRightWidth: 1, borderLeftWidth: 1}}>
-                                    {
-                                        item.value.map((item,index) => {
-                                            return(
-                                                <View key={index}>
-                                                    <CardFormPenilaian
-                                                        value={item.title}
-                                                        plusx={handlePlusX}
-                                                        plusy={handlePlusY}
-                                                        plusz={handlePlusZ}
-                                                        handleMin={handleMin}
-                                                    />
-                                                </View>
-                                            )
-                                        })
-                                    }
-                                    </View>
-                                </View>
-                            )
-                        })
-                    }
+                    {handleDataPenilaian()}
                 </ScrollView>
             </View>
         </View>

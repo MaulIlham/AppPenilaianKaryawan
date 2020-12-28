@@ -23,7 +23,6 @@ const DataPenilaianPerilakuBawahan = props => {
         })
     },[])
 
-console.log(data)
     const generateNilaiKompetensi = () => {
         let row;
         if (data.length!=0){
@@ -73,7 +72,6 @@ console.log(data)
                     <CardPeriodePenilaian
                         smt={semester}
                         thn={tahun}
-                        index={data.length-1}
                     />
                 </View>
                 <View style={styles.view}>
@@ -93,7 +91,10 @@ console.log(data)
                     small
                     label={"Penilaian"}
                     style={styles.btnPenilaian}
-                    onPress={() => props.navigation.navigate("FormPenilaian2")}
+                    onPress={() => props.navigation.navigate("FormPenilaian2",{
+                        semester: semester,
+                        tahun: tahun,
+                    })}
                 />}
                 {showButton&&<FAB
                     small

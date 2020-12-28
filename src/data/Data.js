@@ -1,5 +1,5 @@
 const dataPenilaian = [
-    {
+    {//692
         label: '1. Berorientasi pada Hasil (Driving for Result)',
         value: [
             {
@@ -16,7 +16,7 @@ const dataPenilaian = [
             },
         ]
     },
-    {
+    {//669
         label: '2. Pengembangan Hubungan Strategis (Developing Strategic Relationship)',
         value: [
             {
@@ -45,7 +45,7 @@ const dataPenilaian = [
             },
         ]
     },
-    {
+    {//714
         label: '3. Ketajaman Analisa Bisnis (Business Acumen',
         value: [
             {
@@ -59,7 +59,7 @@ const dataPenilaian = [
             },
         ]
     },
-    {
+    {//717
         label: '4. Orientasi kepada Pelanggan (Customer Orientation)',
         value: [
             {

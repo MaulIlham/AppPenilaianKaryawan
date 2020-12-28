@@ -1,58 +1,44 @@
 import React from 'react'
 import {View, Text, StyleSheet} from 'react-native';
 import {RadioButton} from 'react-native-paper';
+import {postEvaluationYBS} from "../services/PenilaianYBSService";
 
 const CardFormPenilaian = props => {
     const [checked, setChecked] = React.useState('')
-    const [flag, setFlag] = React.useState(false)
-    const {value, plusx, plusy, plusz, handleMin} = props
+    const {perilaku, id} = props
 
-    const handleSetCheckedX = () => {
-        handleMin(checked,flag)
-        setChecked('first')
-        setFlag(true)
-        plusx()
-    }
-
-    const handleSetCheckedY = () => {
-        handleMin(checked,flag)
-        setChecked('second')
-        setFlag(true)
-        plusy()
-    }
-
-    const handleSetCheckedZ = () => {
-        handleMin(checked,flag)
-        setChecked('third')
-        setFlag(true)
-        plusz()
+    const handleChecked = (nilai, check) => {
+        postEvaluationYBS(nilai, id).then(response => {
+            console.log("post success")
+        })
+        setChecked(check)
     }
 
     return(
         <View style={{flexDirection: 'row'}}>
             <View style={styles.vPos}>
-                <Text style={{fontSize: 12}}>{value}</Text>
+                <Text style={{fontSize: 12}}>{perilaku}</Text>
             </View>
             <View style={[styles.vRadio,{width: 75}]}>
                 <RadioButton
                     value={"text1"}
                     status={
                         checked === 'first' ? 'checked' : 'unchecked'}
-                    onPress={() => handleSetCheckedX()}
+                    onPress={() => handleChecked('100','first')}
                 />
             </View>
             <View style={[styles.vRadio,{width: 75}]}>
                 <RadioButton
                     value={"text2"}
                     status={ checked === 'second' ? 'checked' : 'unchecked'}
-                    onPress={() => handleSetCheckedY()}
+                    onPress={() => handleChecked('010','second')}
                 />
             </View>
             <View style={[styles.vRadio,{width: 67}]}>
                 <RadioButton
                     value={"text3"}
                     status={ checked === 'third' ? 'checked' : 'unchecked'}
-                    onPress={() => handleSetCheckedZ()}
+                    onPress={() => handleChecked('001','third')}
                 />
             </View>
         </View>
