@@ -1,22 +1,41 @@
 import BaseUrl from "./BaseUrl";
 import Axios from "axios";
-import {getDataCookie, getDataToken} from "../data/TokenStorage";
+import {getData} from "../data/TokenStorage";
 
-export const getProfile = async () => {
-    const token = await getDataToken().then(res => res)
-    const cookies = await getDataCookie().then(res => res)
 
-    const response = await fetch(`${BaseUrl}penilaian_atasan/2/2020`,{
-        method: 'GET',
-        credentials: 'omit',
+export const getProfilePersonnel = async () => {
+    const data = await getData().then(res => res)
+
+    const response = await Axios.get(`${BaseUrl}profile/personel`,{
         headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: token,
-            'cookie': cookies,
-        },
-
+            'Authorization': data.token,
+        }
     })
 
-    return await response;
+    return await response.data
+}
+
+export const getProfile = async () => {
+    const data = await getData().then(res => res)
+
+    const response = await Axios.get(`${BaseUrl}profile`,{
+        headers: {
+            'Authorization': data.token
+        }
+    })
+
+    return await response.data
+}
+
+export const updateProfile = async (value) => {
+    const data = await getData().then(res => res)
+
+    const response = await Axios.post(`${BaseUrl}profile/update_password`,{
+        headers: {
+            'Authorization': data.token
+        },
+        value
+    })
+
+    return await response.data
 }

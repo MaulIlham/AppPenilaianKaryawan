@@ -6,6 +6,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import IconMaterialComunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconEntypo from 'react-native-vector-icons/Entypo'
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
 // screens
 import SignIn from '../screens/SignIn';
@@ -239,9 +240,7 @@ const PenilaianNavigator = () =>{
 }
 
 const getTabBarVisibility = (route) => {
-    const routeName = route.state
-        ? route.state.routes[route.state.index].name
-        : '';
+    const routeName = getFocusedRouteNameFromRoute(route) ?? '';
 
     if (routeName === 'Feedback' || routeName === 'FormPenilaian2') {
         return false;

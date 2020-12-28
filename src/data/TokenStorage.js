@@ -1,24 +1,22 @@
 import React from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const storeDataToken = async (value) => {
+export const storeData = async (value) => {
     try {
-        await AsyncStorage.setItem('token', value)
+        const jsonValue = JSON.stringify(value)
+        await AsyncStorage.setItem('dataUser', jsonValue)
     } catch (e) {
-        alert("Store Token Error!");
+        alert("Store Data Error!")
     }
 }
 
-export const getDataToken = async () => {
+export const getData = async () => {
     try {
-        const value = await AsyncStorage.getItem('token')
-        if(value !== null) {
-            return await value
-        }
+        const jsonValue = await AsyncStorage.getItem('dataUser')
+        return jsonValue != null ? JSON.parse(jsonValue) : null;
     } catch(e) {
-        alert("Get Token Error!")
+        alert("Get Data Error!")
     }
 }
-
 
 

@@ -1,8 +1,8 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {Card, Text} from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
-
+import IconEvil from 'react-native-vector-icons/EvilIcons'
 
 const CardPeriodePenilaian = props => {
     const [semester, setSemester] = React.useState(0);
@@ -36,31 +36,36 @@ const CardPeriodePenilaian = props => {
 
     return(
         <View>
-            <Card style={{height: 210, width: 380,marginLeft: 7, marginRight: 10, marginBottom: 10}}>
+            <Card style={{height: 230, width: 380,marginLeft: 7, marginRight: 10, marginBottom: 10}}>
                 <Card.Content>
                     <Text style={{fontSize: 20, marginBottom: 5}}>Periode Penilaian</Text>
-                    <View style={{borderBottomWidth:1, borderBottomColor: '#e8e9eb', marginBottom: 10}}></View>
+                    <View style={{borderBottomWidth:1, borderBottomColor: '#e8e9eb'}}></View>
                     <View style={{marginTop: 15, flexDirection: 'column'}}>
-                        <Text style={{fontSize: 10, marginBottom: 5, marginLeft: 2}}>Semester</Text>
-                        <Picker
-                            selectedValue={semester}
-                            style={{height: 30, width: 200, marginBottom: 10}}
-                            onValueChange={(itemValue, itemIndex) =>
-                                setSemester(itemValue)
-                            }>
-                            {
-                                arraySemester.map(item => {
-                                    return(
-                                        <Picker.Item label={item.label} value={item.value} />
-                                    )
-                                })
-                            }
-                        </Picker>
-                            <Text style={{fontSize: 10, marginLeft: 2}}>Tahun</Text>
+                        <Text style={{fontSize: 13, marginBottom: 5, marginLeft: 2}}>Semester</Text>
+                        <View style={style.vCalendar}>
+                            <IconEvil name={"calendar"} size={30} style={{marginTop: 5, marginLeft: 10}}/>
+                            <Picker
+                                selectedValue={semester}
+                                style={style.calendar}
+                                onValueChange={(itemValue) =>
+                                    setSemester(itemValue)
+                                }>
+                                {
+                                    arraySemester.map(item => {
+                                        return(
+                                            <Picker.Item label={item.label} value={item.value} />
+                                        )
+                                    })
+                                }
+                            </Picker>
+                        </View>
+                        <Text style={{fontSize: 13, marginLeft: 2}}>Tahun</Text>
+                        <View style={style.vCalendar}>
+                            <IconEvil name={"calendar"} size={30} style={{marginTop: 5, marginLeft: 10}}/>
                             <Picker
                                 selectedValue={tahun}
-                                style={{height: 30, width: 200}}
-                                onValueChange={(itemValue, itemIndex) =>
+                                style={style.calendar}
+                                onValueChange={(itemValue) =>
                                     setTahun(itemValue)
                                 }>
                                 {
@@ -71,12 +76,32 @@ const CardPeriodePenilaian = props => {
                                     })
                                 }
                             </Picker>
-
+                        </View>
                     </View>
                 </Card.Content>
             </Card>
         </View>
     )
 }
+
+const style = StyleSheet.create({
+    vCalendar:{
+        marginBottom: 15,
+        borderWidth: 1,
+        height: 40,
+        flexDirection: 'row',
+        backgroundColor: "#f0f0f0",
+        borderTopLeftRadius: 5,
+        borderTopRightRadius: 5,
+        borderBottomLeftRadius: 5,
+        borderBottomRightRadius: 5,
+    },
+    calendar:{
+        height: 30,
+        width: 300,
+        marginTop: 3,
+        marginLeft: 20
+    },
+})
 
 export default CardPeriodePenilaian;

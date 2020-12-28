@@ -12,7 +12,6 @@ target 'AppPenilaianPerilakuKaryawan' do
 
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-async-storage/async-storage'
 
-  pod 'react-native-cookies', :path => '../node_modules/@react-native-community/cookies'
 
   pod 'RNCPicker', :path => '../node_modules/@react-native-picker/picker'
 

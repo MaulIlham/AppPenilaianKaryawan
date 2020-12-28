@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Text} from 'react-native';
 import CardPenilaianAtasan from '../components/CardPenilaianAtasan';
 import IconFontAwesom5 from 'react-native-vector-icons/FontAwesome5'
-import {getAllListPersonelEvaluation, getAllPenilaianAtasan} from "../services/PenilaianAtasanService";
+import {getAllListPersonelEvaluation} from "../services/PenilaianAtasanService";
 
 const PenilaianAtasan = props => {
     const [data, setData] = React.useState([])

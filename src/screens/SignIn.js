@@ -6,13 +6,14 @@ import {
     ImageBackground,
     TouchableOpacity,
     Alert,
+    Image
 } from 'react-native';
 import {Card} from 'react-native-paper';
 import IconFoundation from 'react-native-vector-icons/Foundation';
 import IconFontAwesom from 'react-native-vector-icons/FontAwesome';
 import styles from '../css/SignInCss';
 import {signIn} from '../services/AuthService';
-import {storeDataToken} from '../data/TokenStorage';
+import {storeData} from '../data/TokenStorage';
 
 const image = { uri: "https://tipskomputer.net/wp-content/uploads/2017/10/cara-belajar-komputer.png"};
 
@@ -55,7 +56,11 @@ const SignIn = props => {
                         }
                     ], { cancelable: false });
             }else if (response.message==="Login Sukses!" && resultCaptcha==captcha){
-                storeDataToken(response.token);
+                const val = {
+                    username: data.username,
+                    token: response.token,
+                }
+                storeData(val)
                 Alert.alert(
                    "",
                    response.message,
@@ -70,7 +75,7 @@ const SignIn = props => {
     }
     return(
         <View style={styles.container}>
-            <ImageBackground source={image} style={styles.backgroundImage}>
+            <ImageBackground source={require('../bg_login.png')} style={styles.backgroundImage}>
                 <View style={styles.viewTitle}>
                     <Text style={styles.txtTitle}>Selamat Datang Di</Text>
                     <Text style={styles.txtTitle}>Aplikasi Penilaian</Text>
