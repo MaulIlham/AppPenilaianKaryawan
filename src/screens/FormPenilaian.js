@@ -6,6 +6,7 @@ import {getPointEvaluationYBS} from "../services/PenilaianYBSService";
 const FormPenilaian = props =>{
     const [dataPenilaian, setDataPenilaian] = React.useState([])
     const {semester, tahun} = (props.route.params)
+    let number = 0;
 
     React.useLayoutEffect(() => {
         props.navigation.setOptions({
@@ -26,32 +27,6 @@ const FormPenilaian = props =>{
             setDataPenilaian(response.data)
         })
     },[])
-
-    const handleDataPenilaian = () => {
-            dataPenilaian.map((item,index) =>{
-                if (item.detail.length!=0){
-                    return(
-                        <View style={{marginTop: 10}} key={index}>
-                            <Text style={{fontSize: 14, color: '#ff0303', marginLeft: 3, marginBottom: 5}} key={index}>{item.nm_kompetensi}</Text>
-                            <View style={{borderTopWidth: 1, marginLeft: 3, marginRight: 2,borderColor: '#bab9b6', borderRightWidth: 1, borderLeftWidth: 1}}>
-                                {
-                                    item.detail.map((item,index) => {
-                                        return(
-                                            <View key={index}>
-                                                <CardFormPenilaian
-                                                    perilaku={item.nm_perilaku_kunci}
-                                                    id={item.id}
-                                                />
-                                            </View>
-                                        )
-                                    })
-                                }
-                            </View>
-                        </View>
-                    )
-                }
-            })
-    }
 
     const height = Dimensions.get('window').height
     const widht = Dimensions.get('window').width
@@ -85,7 +60,32 @@ const FormPenilaian = props =>{
 
             <View>
                 <ScrollView style={{height: 645}}>
-                    {handleDataPenilaian()}
+                    {
+                        dataPenilaian.map((item,index) =>{
+                        if (item.detail.length!=0){
+                            number++
+                            return(
+                                <View style={{marginTop: 10}} key={index}>
+                                    <Text style={{fontSize: 14, color: '#ff0303', marginLeft: 3, marginBottom: 5}} >{number}. {item.nm_kompetensi}</Text>
+                                    <View style={{borderTopWidth: 1, marginLeft: 3, marginRight: 2,borderColor: '#bab9b6', borderRightWidth: 1, borderLeftWidth: 1}}>
+                                        {
+                                            item.detail.map((item,index) => {
+                                                return(
+                                                    <View key={index}>
+                                                        <CardFormPenilaian
+                                                            perilaku={item.nm_perilaku_kunci}
+                                                            id={item.id}
+                                                        />
+                                                    </View>
+                                                )
+                                            })
+                                        }
+                                    </View>
+                                </View>
+                            )
+                        }
+                    })
+                    }
                 </ScrollView>
             </View>
         </View>
